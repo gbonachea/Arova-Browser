@@ -1,0 +1,175 @@
+# Arova
+
+**Un navegador web ligero, rápido y discreto.**
+
+Arova es un navegador para escritorio construido con Qt y QtWebEngine. Nace como
+un fork del navegador Arora, originalmente escrito por Benjamin C. Meyer, y
+hereda de él una filosofía concreta: menos estorbe.
+
+En lugar de pilingar cada nueva esquina en un navegador moderno, Arova se
+ciñe a un núcleo clásico: pestañas, marcadores, historial, un buscador, un gestor
+de descargas y un bloqueador de anuncios. Todo lo que hace, lo hace bien; nada te
+obliga a aprenderlo antes de poder usarlo.
+
+Es la clase de navegador que quieres cuando abres el navegador para leer tres
+páginas, no para administrar tu vida digital.
+
+## En pocas líneas
+
+- Arranca rápido, ocupa poco y se queda en silencio
+- Pestañas con un botón de cierre por pestaña, y opcionalmente solo uno para
+  todas
+- Bloqueador de anuncios integrado, con suscripciones actualizables
+- Marcadores e historial que se pueden revisar, buscar y limpiar
+- Modo privado que no deja rastro
+- Buscador con sugerencias mientras escribes
+- Gestor de descargas con progreso y velocidad
+- Autocompletado de formularios
+- Proxy, con soporte para SOCKS5
+- Configuración de fuentes, zoom y hoja de estilos
+- Todas las opciones que puedes guardar se traducen al español
+
+## Características
+
+### Navegación
+
+Pestañas con arrastrar y soltar para reordenarlas, botones de adelante y atrás con
+historial, recarga y parada. Zoom con atajos de teclado, en pasos que van del 30%
+al 300%. Modo pantalla completa. Ver el código fuente de la página actual.
+
+Los enlaces pueden abrirse donde prefieras: en la pestaña actual, en una nueva,
+en una nueva seleccionada, o en una ventana aparte. Es una opción configurable,
+no una decisión fixa.
+
+### Buscador
+
+Busca en DuckDuckGo por defecto. Las sugerencias aparecen mientras escribes en la
+barra de direcciones, así que normalmente llegas al destino sin pulsar Enter.
+
+Viene con siete motores preconfigurados: DuckDuckGo, Google, Google I'm Feeling
+Lucky, Yahoo, YouTube, Wikipedia y Reddit. Puedes añadir los tuyos con OpenSearch,
+que se detectan automáticamente a partir del `favicon` de los resultados.
+
+Si escribes algo que no es una URL, se busca directamente. Y si la URL falla, se
+puede recurrir al buscador como último recurso.
+
+### Bloqueador de anuncios
+
+Integrado, sin extensiones que instalar. Filtra las peticiones de anuncios antes
+de que se carguen, de modo que no rompen el diseño de las páginas ni ralentizan
+la navegación.
+
+Las listas de filtrado se pueden añadir por suscripción y se actualizan solas.
+Funciona sobre las peticiones de red, no sobre el contenido ya cargado, así que
+no toca el código de la página ni el estilo que carga.
+
+### Marcadores
+
+Marcadores en una barra lateral o en la propia barra, organizables en carpetas y
+exportables e importables en XBEL, el formato estándar que soporta Firefox.
+
+### Historial
+
+Se registra por página, con título, URL y fecha. Se puede buscar y borrar: de lo
+que lleve más de un día, una semana, un mes, un año, manualmente o al salir.
+
+El autocompletado de la barra de direcciones combina el historial con los
+marcadores, así que los sitios que visitas acaban a un atajo de distancia.
+
+### Modo privado
+
+No guarda historial, ni cookies, ni caché. Al cerrarlo, no queda nada que
+recuperar. Un icono en la barra indica cuándo está activo.
+
+Ten en cuenta que el aviso aparece al activar el modo, y que el historial ya
+registrado se conserva: el modo privado evita que se añada nada nuevo, no borra
+lo anterior.
+
+### Descargas
+
+Cola de descargas con progreso, velocidad y tiempo restante. Se puede cancelar
+una descarga, elegir el destino o delegar en un programa externo, y se avisa
+cuando termina. Los archivos que fallan se pueden reintentar.
+
+### Formularios
+
+Autocompletado de nombres de usuario y contraseñas para no escribirlos cada
+vez. Arova detecta los campos de los formularios y los rellena solo. Los datos
+se guardan en `autofill.dat`, dentro de tu carpeta de datos de usuario, y **no
+van cifrados**: cualquiera con acceso a tu perfil puede leerlos. Si guardas
+credenciales en un equipo compartido, tenlo en cuenta.
+
+### Privacidad y cookies
+
+Control total sobre las cookies: aceptarlas siempre, nunca, o solo de los sitios
+que navegas, con excepciones por sitio. Se puede fijar cuándo caducan y filtrar
+las cookies de seguimiento. También se puede limpiar los datos de navegación bajo
+demanda, por categoría.
+
+JavaScript, imágenes, plugins y ventanas emergentes se activan y desactivan por
+separado. Hay una opción, ClickToFlash, que viene desactivada por defecto: si la
+activas, cada objeto de Flash se sustituye por un botón y decides tú qué se carga.
+
+### Apariencia
+
+El navegador no te impone un aspecto. Puedes elegir las fuentes estándar y de
+tamaño fijo, el tamaño mínimo de letra, y cargar tu propia hoja de estilos para
+cambiar colores y tipografías. Las preferencias de idioma determinan cómo se
+presentan las páginas.
+
+### Red
+
+Configuración de proxy con SOCKS5, HTTP seguro y HTTP transparente. Caché de red
+con tamaño ajustable. Acepta enlaces enviados por otras aplicaciones, y se
+puede pedir confirmación al cerrar varias pestañas o ventanas.
+
+### Multiidioma
+
+La interfaz está traducida al español y a otros idiomas. Se puede elegir el
+idioma de la interfaz y, por separado, el que se envía a los sitios web y con el
+que se presentan las páginas.
+
+## Empaquetado
+
+Arova se distribuye como una carpeta **portable**: un único directorio con todo
+dentro. Sin instalador, sin registros del sistema, sin permisos.
+
+Copia la carpeta donde quieras y funciona. Funciona desde un directorio USB. Y
+desinstalar es borrarla.
+
+El portable incluye el navegador, las librerías de Qt, los plugins, el driver de
+renderizado, las traducciones, las fuentes y los certificados. No depende de nada
+del sistema, y se genera con:
+
+```sh
+./crear_portable.sh
+```
+
+## Compilar
+
+Requiere Qt 6.11 con QtWebEngine, CMake 3.21 o superior y un compilador C++17.
+
+```sh
+cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+```
+
+El ejecutable queda en `build/src/arova`.
+
+## Nota sobre los drivers de GPU
+
+El portable incluye las librerías de gráficos para ser autónomo, pero los drivers
+de GPU llevan rutas grabadas en tiempo de compilación y pueden no funcionar en
+otra máquina con distinto kernel o tarjeta. Si al probarlo WebEngine no levanta la
+ventana, vuelve a generarlo con `SKIP_GL_LIBS=1` para que tome los drivers del
+sistema.
+
+## Agradecimientos
+
+Arova existe gracias a Benjamin C. Meyer y a quienes contribuyeron al Arora
+original, cuyo trabajo es la base de todo esto.
+
+## Licencia
+
+Distribuido bajo la Licencia Pública General de GNU, versión 2 o 3 a tu elección.
+Ver `LICENSE.GPL2` y `LICENSE.GPL3`.
